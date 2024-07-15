@@ -1,0 +1,11 @@
+@import "./abstracts/Breakpoints", "./abstracts/mixins", "./abstracts/variables";
+
+@import "./base/reset", "./base/base";
+
+@import "./components/form";
+
+@import "./pages/landingPage/header", "./pages/landingPage/aboutus",
+  "./pages/landingPage/whyus", "./pages/landingPage/service",
+  "./pages/landingPage/review", "./pages/landingPage/faq",
+  "./pages/landingPage/newsletter", "./pages/landingPage/footer",
+  "./pages/reviewform";

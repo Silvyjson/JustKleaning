@@ -1,0 +1,85 @@
+.faq-section {
+  margin-top: 100px;
+  @include display-style($direction: column);
+  background-color: $secondary-color;
+  color: $text-color;
+  padding: 50px;
+
+  h1 {
+    @include font-style($size: 1.8rem, $weight: 700, $line-height: 2rem);
+    letter-spacing: -0.03em;
+    text-align: center;
+  }
+
+  .h3 {
+    margin-bottom: 10px;
+  }
+
+  p {
+    @include font-style($size: 1.1rem, $weight: 500, $line-height: 1.5rem);
+    width: 100%;
+    letter-spacing: -0.03em;
+    text-align: left;
+  }
+}
+
+.faq-container {
+  @include display-style($justify: space-between, $align: flex-start);
+  margin: 30px;
+  width: 100%;
+  gap: 30px;
+
+  @include bp(900px) {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
+.faq_card {
+  @include display-style($align: normal, $direction: column);
+  gap: 10px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.faq-content {
+  border: 2px solid $primary-color;
+  min-height: 20px;
+  padding: 10px;
+  cursor: pointer;
+
+  h3 {
+    font-size: 0.9rem;
+  }
+
+  article {
+    display: none;
+    padding-top: 10px;
+    font-size: 0.9rem;
+  }
+}
+
+.contact-icon {
+  display: flex;
+  gap: 10px;
+  font-size: 1.2rem;
+}
+
+.contact-icon a {
+  @include display-style;
+  border-radius: 50%;
+  color: $primary-color;
+  background-color: $page-background-color;
+  width: 40px;
+  height: 40px;
+  margin-top: 10px;
+  box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.1);
+}
+
+.qc {
+  color: $highlight-color;
+}
+
+.open_article {
+  display: block !important;
+}

@@ -1,0 +1,164 @@
+.header_section {
+  @include display-style(
+    $direction: column,
+    $justify: space-around,
+    $align: flex-start
+  );
+  padding: 0 50px 30px;
+  height: 100%;
+  background-image: url("https://img.freepik.com/premium-photo/blue-mop-office-floor_177415-6113.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  @include lg {
+    align-items: normal;
+    padding-bottom: 10%;
+  }
+
+  @include bp(650px) {
+    padding: 0 20px 30px;
+  }
+}
+
+.header_nav-section {
+  width: 100%;
+  @include display-style($justify: space-between);
+
+  @include lg {
+    flex-direction: column;
+  }
+}
+
+.headersection-menu-icon {
+  display: none;
+
+  @include lg {
+    display: block;
+  }
+}
+
+.navElement {
+  @include font-style($size: 0.9rem, $line-height: 2.5rem);
+  @include display-style($justify: normal);
+  gap: 20px;
+  cursor: pointer;
+
+  @include lg {
+    width: 100%;
+    border-top: 5px solid #333;
+    display: none;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    gap: 3px;
+    background: linear-gradient(
+      to left,
+      rgba(0, 166, 251, 0.8) 0%,
+      rgba(247, 197, 159, 0.8) 0%,
+      rgba(5, 130, 202, 0.8) 80%
+    );
+
+    li {
+      text-align: center;
+      width: 100%;
+    }
+  }
+}
+
+.navlist li {
+  @include display-style();
+  width: auto;
+  padding: 20px;
+  height: 30px;
+  border-radius: 10px;
+  background-color: $primary-color;
+  color: $text-color;
+
+  @include lg {
+    display: block;
+    width: auto;
+    height: auto;
+    padding: 0;
+    border-radius: none;
+    background-color: transparent;
+    color: black;
+  }
+}
+
+.navlist {
+  @include lg {
+    padding: 0;
+    margin: 0;
+    border-top: none;
+    border-bottom: 5px solid #333;
+  }
+}
+
+.logo-menubar-container {
+  @include lg {
+    @include display-style($justify: space-between);
+    width: 100%;
+  }
+
+  img {
+    width: 150px;
+    height: 100px;
+  }
+}
+
+.open_nav {
+  @include lg {
+    display: flex !important;
+  }
+}
+
+.header_content {
+  @include display-style($direction: column);
+
+  width: 50%;
+
+  @include lg {
+    width: 75%;
+    margin-top: 20px;
+  }
+
+  @include bp(650px) {
+    width: 100%;
+    text-align: center;
+  }
+
+  h1 {
+    @include font-style($size: 1.8rem, $weight: 700, $line-height: 2rem);
+
+    b {
+      color: $primary-color;
+    }
+  }
+
+  p {
+    @include font-style($size: 1.25rem, $weight: 500, $line-height: 1.5rem);
+    margin-top: 10px;
+  }
+}
+
+.button {
+  margin: 20px auto;
+  width: 100%;
+
+  @include bp(650px) {
+    @include display-style();
+  }
+  button {
+    border: none;
+    @include display-style();
+    max-width: 150px;
+    width: auto;
+    padding: 20px;
+    height: 30px;
+    border-radius: 10px;
+    background-color: $primary-color;
+    color: $text-color;
+    cursor: pointer;
+  }
+}

@@ -6,7 +6,8 @@
   );
   padding: 0 50px 30px;
   height: 100%;
-  background-image: url("https://img.freepik.com/premium-photo/blue-mop-office-floor_177415-6113.jpg");
+  // background-image: url("https://img.freepik.com/premium-photo/blue-mop-office-floor_177415-6113.jpg");
+  background-image: url("https://media.istockphoto.com/id/1433923860/photo/concept-of-cleaning-service-during-the-new-year-holidays.jpg?s=612x612&w=0&k=20&c=ZfYYr_fjD1Uyowo-FiPC4eADErU3b2d2g_blWHULnQE=");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -30,14 +31,6 @@
   }
 }
 
-.headersection-menu-icon {
-  display: none;
-
-  @include lg {
-    display: block;
-  }
-}
-
 .navElement {
   @include font-style($size: 0.9rem, $line-height: 2.5rem);
   @include display-style($justify: normal);
@@ -54,9 +47,9 @@
     gap: 3px;
     background: linear-gradient(
       to left,
-      rgba(0, 166, 251, 0.8) 0%,
-      rgba(247, 197, 159, 0.8) 0%,
-      rgba(5, 130, 202, 0.8) 80%
+      rgba(0, 166, 251, 0.5) 0%,
+      rgba(247, 197, 159, 0.3) 0%,
+      rgba(5, 130, 202, 0.3) 80%
     );
 
     li {
@@ -92,6 +85,21 @@
     margin: 0;
     border-top: none;
     border-bottom: 5px solid #333;
+  }
+}
+
+.h-menu {
+  display: none;
+
+  @include lg {
+    height: 65px;
+    display: block;
+  }
+
+  .headersection-menu-icon {
+    @include lg {
+      display: block;
+    }
   }
 }
 

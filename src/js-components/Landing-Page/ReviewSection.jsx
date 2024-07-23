@@ -1,29 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import customer_review_img from "../../assets/customer-review.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
-
-const testimonials = [
-    {
-        text: "Amazing service, cheaper price. They clean my home quickly and I really like the way they work. Love it!!",
-        author: "Jonathon Daniel",
-        image: "https://cdn3.vectorstock.com/i/1000x1000/81/82/customer-review-icon-vector-20968182.jpg",
-        rating: 2
-    },
-    {
-        text: "Amazing service, cheaper price. They clean my home quickly and I really like the way they work. Love it!!",
-        author: "Jonathon Daniel",
-        image: "https://cdn3.vectorstock.com/i/1000x1000/81/82/customer-review-icon-vector-20968182.jpg",
-        rating: 4
-    },
-    // Add more testimonials here
-];
-
 const ReviewSection = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [testimonials, setTestimonials] = useState([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchReviews = async () => {
+            try {
+                const response = await fetch('https://justkleaning-backend.onrender.com/api/get-review');
+                const data = await response.json();
+                setTestimonials(data);
+            } catch (error) {
+                console.error("Error fetching testimonials:", error);
+            }
+        };
+
+        fetchReviews();
+    }, []);
 
     const handleDotClick = (index) => {
         setCurrentIndex(index);
@@ -36,6 +33,10 @@ const ReviewSection = () => {
     const handleNextClick = () => {
         setCurrentIndex((prevIndex) => (prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1));
     };
+
+    if (testimonials.length === 0) {
+        return <p>Loading testimonials...</p>;
+    }
 
     return (
         <section className="testimonials">
@@ -60,7 +61,7 @@ const ReviewSection = () => {
                     </div>
                 </div>
                 <div className="testimonial-content">
-                    <p className="testimonial-text">{testimonials[currentIndex].text}</p>
+                    <p className="testimonial-text">{testimonials[currentIndex].message}</p>
                     <div className="testimonial-image">
                         <img src={testimonials[currentIndex].image} alt="Customer" />
                         <div className="testimonial-info">

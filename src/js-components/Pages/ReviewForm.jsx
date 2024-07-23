@@ -5,14 +5,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button, Input } from "../Other-component/FormProps";
 import profileImg from '../../assets/profile.png';
 
-
 const ReviewForm = () => {
     const navigate = useNavigate();
     const fileInputRef = useRef(null);
+    const [loading, SetLoading] = useState(false);
+    const [status, setStatus] = useState(null);
+    const [error, setError] = useState(null);
     const [formData, setFormData] = useState({
-        author: '',
         image: '',
-        text: '',
+        author: '',
+        email: '',
+        message: '',
         rating: 0
     });
 
@@ -31,10 +34,14 @@ const ReviewForm = () => {
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            setFormData((prevData) => ({
-                ...prevData,
-                image: URL.createObjectURL(file)
-            }));
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setFormData((prevData) => ({
+                    ...prevData,
+                    image: reader.result
+                }));
+            };
+            reader.readAsDataURL(file);
         }
     };
 
@@ -45,20 +52,69 @@ const ReviewForm = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setFormData({
-            author: '',
-            image: '',
-            text: '',
-            rating: 0
-        });
+        SetLoading(true)
+
+        const { image, author, email, message, rating } = formData;
+
+        const formDataToSend = {
+            image,
+            author,
+            email,
+            message,
+            rating
+        };
+
+        if (!image || !author || !email || !message || !rating) {
+            setError('Please fill in all required fields.');
+            SetLoading(false)
+            return;
+        } else {
+            setError(null)
+        }
+
+        try {
+            const response = await fetch('https://justkleaning-backend.onrender.com/api/post-review', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formDataToSend),
+            });
+
+            if (response.ok) {
+                SetLoading(false);
+                setStatus('Review submitted successfully!');
+                setFormData({
+                    image: '',
+                    author: '',
+                    email: '',
+                    message: '',
+                    rating: 0
+                });
+            } else {
+                SetLoading(false)
+                const errorData = await response.json();
+                setStatus(`Failed to submit the review: ${errorData.message || 'Unknown error'}`);
+            }
+        } catch (error) {
+            SetLoading(false)
+            console.error('Error:', error);
+            setStatus('An error occurred while submitting the review.');
+        }
     };
+
+    if (status) {
+        setTimeout(function () {
+            setStatus(null);
+        }, 5000)
+    }
 
     return (
         <section className='review-form--section'>
             <div className='rf-logo'>
-                <img src={logo} alt="justKleaning logo" />
+                <img src={logo} alt="JustKleaning logo" />
             </div>
             <form className="review-form" onSubmit={handleSubmit}>
                 <h2>Post a Review</h2>
@@ -67,7 +123,7 @@ const ReviewForm = () => {
                         <FontAwesomeIcon icon="fa-solid fa-upload" />
                         <span>
                             <b>Upload your picture</b>
-                            <p>file format  Max. 5MB </p>
+                            <p>File format Max. 5MB</p>
                         </span>
                     </span>
                     <img src={formData.image || profileImg} alt="Uploaded preview" />
@@ -81,6 +137,7 @@ const ReviewForm = () => {
                         onChange={handleFileChange}
                     />
                 </div>
+                {error && <p className='error-message'>{error}</p>}
                 <Input
                     label="Full Name"
                     htmlFor="author"
@@ -91,12 +148,22 @@ const ReviewForm = () => {
                     onChange={handleChange}
                     required
                 />
+                <Input
+                    label="Email"
+                    htmlFor="email"
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                />
                 <div className='inputFormStyle'>
-                    <label htmlFor="text">Review:</label>
+                    <label htmlFor="message">Review:</label>
                     <textarea
-                        id="text"
-                        name="text"
-                        value={formData.text}
+                        id="message"
+                        name="message"
+                        value={formData.message}
                         onChange={handleChange}
                         required
                         className='textareaStyle'
@@ -111,9 +178,24 @@ const ReviewForm = () => {
                         />
                     ))}
                 </div>
-                <Button label="Submit Review" type="submit" />
+                <Button
+                    disabled
+                    type="submit"
+                    label={
+                        status ? (
+                            "Submitted"
+                        ) : loading ? (
+                            <FontAwesomeIcon icon="fa-spinner" spin />
+                        ) : (
+                            "Submit Review"
+                        )
+                    }
+                    className="disabled"
+                />
             </form>
-            <span onClick={() => navigate("/")} className="rflink"><FontAwesomeIcon icon="fa-solid fa-arrow-left" className="fA-arrow" /> Back to Home</span>
+            <span onClick={() => navigate("/")} className="rflink">
+                <FontAwesomeIcon icon="fa-solid fa-arrow-left" className="fA-arrow" /> Back to Home
+            </span>
         </section>
     );
 };

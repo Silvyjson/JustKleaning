@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const Button = (props) => {
-  const { label, className, onClick } = props;
+  const { label, className, onClick, disabled } = props;
 
   return (
-    <button type="submit" className={`buttonStyle ${className}`} onClick={onClick}>{label}</button>
+    <button disabled={disabled} type="submit" className={`buttonStyle ${className}`} onClick={onClick}>{label}</button>
   );
 };
 

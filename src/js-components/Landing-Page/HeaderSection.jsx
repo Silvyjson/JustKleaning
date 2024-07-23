@@ -69,10 +69,12 @@ function Header() {
       <nav className="header_nav-section">
         <div className="logo-menubar-container">
           <img src={logo} alt="logo" />
-          <Menubar
-            onClick={toggleList}
-            className="headersection-menu-icon"
-          />
+          <div className="h-menu">
+            <Menubar
+              onClick={toggleList}
+              className="headersection-menu-icon"
+            />
+          </div>
         </div>
 
         <ul className="navElement">

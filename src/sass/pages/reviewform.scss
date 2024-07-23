@@ -26,7 +26,7 @@
   padding: 10px;
   margin-bottom: 20px;
 
-  @include sm {
+  @include bp(450px) {
     flex-direction: column-reverse;
     gap: 10px;
   }
@@ -60,9 +60,17 @@
 
 .review-form {
   padding: 0 20px;
-  @include sm {
+  @include bp(450px) {
     width: 100%;
 
+    input,
+    textarea,
+    .buttonStyle {
+      width: 300px;
+    }
+  }
+
+  @include bp(350px) {
     input,
     textarea,
     .buttonStyle {
@@ -98,4 +106,16 @@
 
 .fA-arrow {
   color: $primary-color;
+}
+
+.error-message {
+  font-size: 0.9rem;
+  color: red;
+  text-align: center;
+  margin: 5px 0;
+}
+
+.disabled {
+  background-color: #ccc;
+  border: none;
 }

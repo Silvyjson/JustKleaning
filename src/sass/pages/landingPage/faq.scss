@@ -5,6 +5,10 @@
   color: $text-color;
   padding: 50px;
 
+  @include sm {
+    padding: 25px;
+  }
+
   h1 {
     @include font-style($size: 1.8rem, $weight: 700, $line-height: 2rem);
     letter-spacing: -0.03em;

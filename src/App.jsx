@@ -13,8 +13,8 @@ library.add(fab, fas, far);
 const App = () => {
 
   const router = createBrowserRouter([
-    { path: "/", element: <LandingPage /> },
-    { path: "/review-form", element: <ReviewForm /> }
+    { path: "/JustKleaning/", element: <LandingPage /> },
+    { path: "/JustKleaning/review-form", element: <ReviewForm /> }
   ]);
 
   return (

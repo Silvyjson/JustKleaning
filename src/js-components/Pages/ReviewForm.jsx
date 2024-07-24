@@ -192,7 +192,7 @@ const ReviewForm = () => {
                     className="disabled"
                 />
             </form>
-            <span onClick={() => navigate("/")} className="rflink">
+            <span onClick={() => navigate("/JustKleaning/")} className="rflink">
                 <FontAwesomeIcon icon="fa-solid fa-arrow-left" className="fA-arrow" /> Back to Home
             </span>
         </section>

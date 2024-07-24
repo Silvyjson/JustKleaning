@@ -21,10 +21,10 @@ const ServiceSection = () => {
       src: "https://st3.depositphotos.com/20363444/35577/i/450/depositphotos_355770670-stock-photo-cropped-view-cleaner-rubber-gloves.jpg"
     },
     {
-      title: "Office Cleaning Plan",
-      overview: "Our Office Cleaning Plan is designed to keep your workspace clean, hygienic, and professional. This plan ensures a productive and healthy environment for your employees and clients.",
+      title: "Outdoor Cleaning Plan",
+      overview: "Our Outdoor Cleaning Plan is designed to keep your outdoor spaces clean, tidy, and welcoming. This plan includes services like garden maintenance, patio cleaning, and driveway washing.",
       price: "£80.99",
-      src: "https://img.freepik.com/free-photo/professional-cleaning-service-person-using-vacuum-cleaner-office_23-2150520594.jpg"
+      src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRroDIaD3rlWceW-qEm9ORMwYJeYJIOr2o-A&s"
     },
   ];
 

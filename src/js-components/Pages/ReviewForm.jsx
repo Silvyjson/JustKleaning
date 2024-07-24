@@ -122,7 +122,7 @@ const ReviewForm = () => {
                         <FontAwesomeIcon icon="fa-solid fa-upload" />
                         <span>
                             <b>Upload your picture</b>
-                            <p>File format Max. 5MB</p>
+                            <p>File format Max. 25MB</p>
                         </span>
                     </span>
                     <img src={formData.image || profileImg} alt="Uploaded preview" />

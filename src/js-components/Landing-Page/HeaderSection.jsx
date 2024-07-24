@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import Menubar from "../Other-component/Navigation";
 import logo from '../../assets/logo.png'
 
@@ -18,7 +18,7 @@ const HeaderLinkList = (props) => {
 }
 
 function Header() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   function toggleList() {
 
@@ -98,7 +98,7 @@ function Header() {
         </ul>
 
         <ul className="navElement navlist">
-          <li onClick={() => navigate("/signUp-page")}>Schedule Now</li>
+          <li>Schedule Now</li>
         </ul>
       </nav>
 

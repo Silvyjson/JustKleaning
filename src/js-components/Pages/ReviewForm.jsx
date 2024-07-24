@@ -95,13 +95,12 @@ const ReviewForm = () => {
                 });
             } else {
                 SetLoading(false)
-                const errorData = await response.json();
-                setStatus(`Failed to submit the review: ${errorData.message || 'Unknown error'}`);
+                setStatus(`Failed to submit`);
             }
         } catch (error) {
             SetLoading(false)
             console.error('Error:', error);
-            setStatus('An error occurred while submitting the review.');
+            setError('An error occurred while submitting the review.');
         }
     };
 
